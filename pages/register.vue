@@ -4,7 +4,7 @@
       <v-col cols="5">
         <v-card>
           <v-card-title>
-            <h1>Crear cuenta</h1>
+            <h1>{{ title }}</h1>
           </v-card-title>
           <v-card-subtitle>
             Crea tu cuenta gratuitamente hasta el 30 de julio de 2023
@@ -13,10 +13,10 @@
             <v-form>
               <v-row>
                 <v-col>
-                  <v-text-field label="Nombre" />
+                  <v-text-field label="Nombre" v-model="account.name"/>
                 </v-col>
                 <v-col>
-                  <v-text-field label="Apellido" />
+                  <v-text-field label="Apellido" v-model="account.lastName"/>
                 </v-col>
               </v-row>
               <v-row>
@@ -38,7 +38,7 @@
               </v-row>
               <v-row justify="center" align-self="center">
                 <v-col cols="4" >
-                  <v-btn depressed color="primary"> Crear cuenta </v-btn>
+                  <v-btn depressed color="primary" @click="createAccount"> Crear cuenta </v-btn>
                 </v-col>
               </v-row>
             </v-form>
@@ -51,5 +51,20 @@
 <script lang="ts">
 export default {
   layout: 'blank',
+  data(){
+    return{
+      title:"Crear cuenta",
+      account:{
+        name:"",
+        lastName:""
+      }
+    }
+  },
+
+  methods:{
+    createAccount(){
+      console.log(`Hello world ${this.account.name}`);
+    }
+  }
 }
 </script>
