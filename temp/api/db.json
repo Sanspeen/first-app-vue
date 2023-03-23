@@ -1,0 +1,28 @@
+{
+  "accounts": [
+    {
+      "name": "Santiago",
+      "lastName": "Franco",
+      "email": "dsad@gmail.com",
+      "pass": "123456",
+      "polity": true,
+      "id": 1
+    },
+    {
+      "name": "dasd",
+      "lastName": "dasda",
+      "email": "dsadsa",
+      "pass": "dasdsa",
+      "polity": true,
+      "id": 2
+    },
+    {
+      "name": "Santiago",
+      "lastName": "Franco",
+      "email": "ktns0930@gmail.com",
+      "pass": "123456",
+      "polity": true,
+      "id": 3
+    }
+  ]
+}
