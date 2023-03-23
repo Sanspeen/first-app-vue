@@ -13,18 +13,24 @@
             <v-form>
               <v-row>
                 <v-col>
-                  <v-text-field label="Nombre" v-model="account.name"/>
+                  <v-text-field label="Nombre" v-model="account.name" />
                 </v-col>
                 <v-col>
-                  <v-text-field label="Apellido" v-model="account.lastName"/>
+                  <v-text-field label="Apellido" v-model="account.lastName" />
                 </v-col>
               </v-row>
               <v-row>
                 <v-col>
-                  <v-text-field label="Correo" />
+                  <v-text-field label="Correo" v-model="account.email" />
                 </v-col>
                 <v-col>
-                  <v-text-field label="Contraseña" />
+                  <v-text-field
+                    label="Contraseña"
+                    v-model="account.pass"
+                    :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
+                    :type="showPassword ? 'text' : 'password'"
+                    @click:append="changeVisivilityPassword()"
+                  />
                 </v-col>
               </v-row>
               <v-row>
@@ -33,12 +39,15 @@
                     depressed
                     color="primary"
                     label="Aceptar terminos y condiciones"
+                    v-model="account.polity"
                   ></v-checkbox>
                 </v-col>
               </v-row>
               <v-row justify="center" align-self="center">
-                <v-col cols="4" >
-                  <v-btn depressed color="primary" @click="createAccount"> Crear cuenta </v-btn>
+                <v-col cols="4">
+                  <v-btn depressed color="primary" @click="createAccount">
+                    Crear cuenta
+                  </v-btn>
                 </v-col>
               </v-row>
             </v-form>
@@ -50,21 +59,29 @@
 </template>
 <script lang="ts">
 export default {
-  layout: 'blank',
-  data(){
-    return{
-      title:"Crear cuenta",
-      account:{
-        name:"",
-        lastName:""
-      }
+  layout: 'default',
+  data() {
+    return {
+      title: 'Crear cuenta',
+      showPassword: false,
+      account: {
+        name: '',
+        lastName: '',
+        email: '',
+        pass: '',
+        polity: false,
+      },
     }
   },
 
-  methods:{
+  methods: {
     createAccount(){
-      console.log(`Hello world ${this.account.name}`);
+      console.log(this.account)
+    },
+    changeVisivilityPassword(){
+      this.showPassword = !this.showPassword
+      console.log(this.showPassword);
     }
-  }
+  },
 }
 </script>
