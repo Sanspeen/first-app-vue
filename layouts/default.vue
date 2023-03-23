@@ -86,6 +86,11 @@ export default {
           title: 'Crear cuenta',
           to: '/Register',
         },
+        {
+          icon: 'mdi-account',
+          title: 'Iniciar sesion',
+          to: '/Login',
+        },
       ],
       miniVariant: false,
       right: true,

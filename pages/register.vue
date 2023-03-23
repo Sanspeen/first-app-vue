@@ -75,13 +75,30 @@ export default {
   },
 
   methods: {
-    createAccount(){
-      console.log(this.account)
+    createAccount() {
+      const url: string = 'http://localhost:3001/accounts'
+      this.$axios
+        .$post(url, this.account)
+        .then((response) => {
+          console.log('Cuenta creada correctamente', response)
+        })
+        .catch((err) => {
+          console.error('Ha ocurrido un error', err)
+        })
+        .finally(() => {
+          this.account.email = ''
+          this.account.name = ''
+          this.account.pass = ''
+          this.account.lastName = ''
+          this.account.polity = false
+
+          console.log('La creacion de la cuenta ha finalizado')
+        })
     },
-    changeVisivilityPassword(){
+    changeVisivilityPassword() {
       this.showPassword = !this.showPassword
-      console.log(this.showPassword);
-    }
+      console.log(this.showPassword)
+    },
   },
 }
 </script>
