@@ -22,6 +22,7 @@
                     label="Email"
                     type="text"
                     v-model="account.email"
+                    :rules="emailRules"
                   ></v-text-field>
                   <v-text-field
                     id="password"
@@ -29,6 +30,7 @@
                     name="password"
                     label="Password"
                     v-model="account.pass"
+                    :rules="passwordRules"
                     :type="showPassword ? 'text' : 'password'"
                     :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
                     @click:append="changeVisivilityPassword()"
@@ -58,6 +60,19 @@ export default {
   data() {
     return {
       accounts: [],
+      emailErrorMessage: '',
+      emailRules: [
+        (v) => !!v || 'Email is required',
+        (v) =>
+          /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+          'Incorrect email structure',
+      ],
+      passwordRules: [
+        (v) => !!v || 'Email is required',
+        (v) =>
+          /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(v) ||
+          'Password must contain at least lowercase letter, one number, a special character and one uppercase letter',
+      ],
       showPassword: false,
       loginMessage: false,
       wrongAccountMessage: false,
@@ -72,7 +87,7 @@ export default {
       this.showPassword = !this.showPassword
     },
     verifyIdentity() {
-      const url = 'http://localhost:3001/accounts'
+      const url = 'http://localhost:3004/accounts'
       this.$axios
         .$get(url)
         .then((response) => {
@@ -89,7 +104,7 @@ export default {
               element.pass === this.account.pass
             ) {
               this.loginMessage = true
-              this.wrongAccountMessage = false  
+              this.wrongAccountMessage = false
             }
 
             if (this.loginMessage === false) {
