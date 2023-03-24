@@ -76,7 +76,7 @@ export default {
 
   methods: {
     createAccount() {
-      const url: string = 'http://localhost:3001/accounts'
+      const url: string = 'http://localhost:3004/accounts'
       this.$axios
         .$post(url, this.account)
         .then((response) => {
